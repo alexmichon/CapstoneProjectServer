@@ -4,12 +4,17 @@ Rails.application.routes.draw do
 
   root to: 'users#index'
   resources :users
-
+  resources :measurement_sets do
+	resources :measurements
+  end
 
   namespace :api, format: :json do
     namespace :v1 do
     	mount_devise_token_auth_for 'User', at: 'auth'
     	resources :users
+    	resources :measurement_sets do
+    		resources :measurements
+    	end
     end
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
