@@ -4,6 +4,8 @@ module Api
 			#include Concerns::Authenticator
 			#include Concerns::ErrorHandler
 			include DeviseTokenAuth::Concerns::SetUserByToken
+
+			respond_to :json
 		end
 	end
 end 
