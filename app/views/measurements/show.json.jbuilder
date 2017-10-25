@@ -1,0 +1,1 @@
+<%= render partial: 'measurement', locals: { measurement: @measurement } %>

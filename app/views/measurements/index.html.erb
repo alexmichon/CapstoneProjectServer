@@ -1,0 +1,5 @@
+<ul>
+	<% @measurements.each do |meas| %>
+		<li><%= render partial: 'measurement', locals: {measurement: meas } %></li>
+	<% end %>
+</ul>
