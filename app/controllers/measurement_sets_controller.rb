@@ -5,7 +5,7 @@ class MeasurementSetsController < ApplicationController
 	end
 
 	def show
-		@measurement_set = MeasurementSet.find(params[:id])
+		@measurement_set = MeasurementSet.find(params[:id]).decorate
 	end
 
 end
