@@ -10,16 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171024233315) do
+ActiveRecord::Schema.define(version: 20171027215321) do
 
   create_table "measurement_sets", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name", null: false
+    t.index ["name"], name: "index_measurement_sets_on_name", unique: true
   end
 
   create_table "measurements", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.float "value", limit: 24
-    t.timestamp "took_at"
+    t.float "value", limit: 24, null: false
+    t.bigint "took_at", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "measurement_set_id", null: false
