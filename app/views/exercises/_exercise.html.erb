@@ -1,0 +1,5 @@
+<ul>
+	<% exercise.metrics.each do |metric| %>
+		<li><%= render partial: 'metrics/metric', locals: { metric: metric } %></li>l
+	<% end %>
+</ul>

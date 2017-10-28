@@ -1,0 +1,16 @@
+<h1><%= metric.name %></h1>
+<table>
+	<thead>
+		<tr>
+			<th>Took at</th>
+			<th>Value</th>
+	</thead>
+	<tbody>
+		<% metric.measurements.each do |meas| %>
+			<tr>
+				<td><%= meas.took_at %></td>
+				<td><%= meas.value %></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>

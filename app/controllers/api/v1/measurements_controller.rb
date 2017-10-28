@@ -1,16 +1,17 @@
 class Api::V1::MeasurementsController < Api::V1::ApiController
-	before_action :find_measurement_set
+	before_action :find_exercise
+	before_action :find_metric
 
 	def index
-		@measurements = @measurement_set.measurements.all
+		@measurements = @metric.measurements.all
 	end
 
 	def show
-		@measurement = @measurement_set.measurements.find(params[:id])
+		@measurement = @metric.measurements.find(params[:id])
 	end
 
 	def create
-		@measurement = @measurement_set.measurements.build measurement_params
+		@measurement = @metric.measurements.build measurement_params
 		@measurement.save!
 		render :show
 	end
@@ -21,8 +22,12 @@ class Api::V1::MeasurementsController < Api::V1::ApiController
 		params.require(:measurement).permit(:took_at, :value)
 	end
 
-	def find_measurement_set
-		@measurement_set = MeasurementSet.find(params[:measurement_set_id])
+	def find_exercise
+		@exercise = Exercise.find(params[:exercise_id])
+	end
+
+	def find_metric
+		@metric = @exercise.metrics.find(params[:metric_id])
 	end
 
 end

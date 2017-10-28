@@ -1,4 +1,4 @@
-class MeasurementSetDecorator < Draper::Decorator
+class MetricDecorator < ApplicationDecorator
   delegate_all
 
   def line_chart

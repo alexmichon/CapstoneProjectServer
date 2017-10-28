@@ -1,0 +1,1 @@
+json.partial! 'metric', metric: @metric

@@ -1,0 +1,6 @@
+<h1>Metrics</h1>
+<ul>
+	<% @metrics.each do |metric| %>
+		<li><%= link_to metric.name, [@exercise, metric] %></li>
+	<% end %>
+</ul>

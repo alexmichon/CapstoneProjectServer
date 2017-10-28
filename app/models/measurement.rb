@@ -1,3 +1,3 @@
 class Measurement < ApplicationRecord
-	belongs_to :measurement_set
+	belongs_to :metric
 end

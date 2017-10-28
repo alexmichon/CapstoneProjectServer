@@ -4,16 +4,20 @@ Rails.application.routes.draw do
 
   root to: 'users#index'
   resources :users
-  resources :measurement_sets do
-	resources :measurements
+  resources :exercises do
+    resources :metrics do
+	    resources :measurements
+    end
   end
 
   namespace :api, format: :json do
     namespace :v1 do
     	mount_devise_token_auth_for 'User', at: 'auth'
     	resources :users
-    	resources :measurement_sets do
-    		resources :measurements
+      resources :exercises do
+    	  resources :metrics do
+    		  resources :measurements
+        end
     	end
     end
   end

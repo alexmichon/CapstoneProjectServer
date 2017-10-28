@@ -1,1 +1,0 @@
-json.array! @measurement_sets, partial: 'measurement_set', as: :measurement_set

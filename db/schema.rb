@@ -10,13 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171027215321) do
+ActiveRecord::Schema.define(version: 20171027234248) do
 
-  create_table "measurement_sets", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "exercises", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "name", null: false
-    t.index ["name"], name: "index_measurement_sets_on_name", unique: true
   end
 
   create_table "measurements", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -24,8 +23,16 @@ ActiveRecord::Schema.define(version: 20171027215321) do
     t.bigint "took_at", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "measurement_set_id", null: false
-    t.index ["measurement_set_id"], name: "index_measurements_on_measurement_set_id"
+    t.bigint "metric_id", null: false
+    t.index ["metric_id"], name: "index_measurements_on_metric_id"
+  end
+
+  create_table "metrics", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "name", null: false
+    t.bigint "exercise_id", null: false
+    t.index ["exercise_id"], name: "index_metrics_on_exercise_id"
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
