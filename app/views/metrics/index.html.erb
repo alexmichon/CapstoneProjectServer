@@ -1,6 +1,17 @@
 <h1>Metrics</h1>
+
+<% @metrics.group_by(&:sensor_id).each do |sensor_id, ms| %>
+	<%= line_chart ms.map {|m| m.decorate.multiple_series } %>
+<% end %>
+
 <ul>
-	<% @metrics.each do |metric| %>
-		<li><%= link_to metric.name, [@exercise, metric] %></li>
+	<% @metrics.group_by(&:sensor_id).each do |sensor_id, ms| %>
+		<li>
+			<ul>
+				<% ms.each do |m| %>
+					<li><%= link_to m.name, [@exercise, m] %></li>
+				<% end %>
+			</ul>
+		</li>
 	<% end %>
 </ul>

@@ -19,7 +19,7 @@ class Api::V1::MetricsController < Api::V1::ApiController
 	private
 
 	def metrics_params
-		params.require(:metric).permit(:name)
+		params.require(:metric).permit(:name, :sensor, :sensor_id)
 	end
 
 	def find_exercise
