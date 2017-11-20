@@ -1,0 +1,5 @@
+<ul>
+	<% @sensors.each do |sensor| %>
+		<li><%= link_to sensor.name, [@exercise, @sensor] %></li>
+	<% end %>
+</ul>
