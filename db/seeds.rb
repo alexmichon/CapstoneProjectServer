@@ -6,6 +6,16 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-Sensor.create(:name => "Encoder")
-Sensor.create(:name => "Arm IMU")
-Sensor.create(:name => "Forearm IMU")
+encoder = Sensor.create(:name => "Encoder")
+accelero = Sensor.create(:name => "Accelerometer")
+gyro = Sensor.create(:name => "Gyroscope")
+
+Metric.create(:name => "Acc X", :sensor => accelero)
+Metric.create(:name => "Acc Y", :sensor => accelero)
+Metric.create(:name => "Acc Z", :sensor => accelero)
+
+Metric.create(:name => "Gyr X", :sensor => gyro)
+Metric.create(:name => "Gyr Y", :sensor => gyro)
+Metric.create(:name => "Gyr Z", :sensor => gyro)
+
+Metric.create(:name => "Angle", :sensor => encoder)
