@@ -1,0 +1,1 @@
+json.array! @metrics, partial: 'metric', as: :metric

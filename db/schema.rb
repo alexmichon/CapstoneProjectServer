@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171107191958) do
+ActiveRecord::Schema.define(version: 20171120073405) do
 
   create_table "exercises", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
@@ -24,6 +24,8 @@ ActiveRecord::Schema.define(version: 20171107191958) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "metric_id", null: false
+    t.bigint "exercise_id", null: false
+    t.index ["exercise_id"], name: "index_measurements_on_exercise_id"
     t.index ["metric_id"], name: "index_measurements_on_metric_id"
   end
 
@@ -31,9 +33,7 @@ ActiveRecord::Schema.define(version: 20171107191958) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "name", null: false
-    t.bigint "exercise_id", null: false
     t.bigint "sensor_id", null: false
-    t.index ["exercise_id"], name: "index_metrics_on_exercise_id"
     t.index ["sensor_id"], name: "index_metrics_on_sensor_id"
   end
 

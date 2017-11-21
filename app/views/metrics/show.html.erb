@@ -1,0 +1,6 @@
+<h1><%= @metric.name %></h1>
+<%= @metric.line_chart %>
+
+<br>
+
+<%= render partial: 'metric', :locals => {metric: @metric} %>
