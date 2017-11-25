@@ -62,6 +62,7 @@ end
 group :test do
   gem 'database_cleaner'
   gem 'factory_bot_rails', '~> 4.0'
+  gem 'codecov', require: false
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

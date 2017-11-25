@@ -1,4 +1,4 @@
 FactoryBot.define do
-	factory :measurement_set do
+	factory :sensor do
 	end
 end

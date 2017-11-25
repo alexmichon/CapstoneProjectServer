@@ -2,6 +2,7 @@ FactoryBot.define do
 	factory :measurement do
 		value 1
 		took_at Time.now
-		measurement_set
+		exercise
+		metric
 	end
 end

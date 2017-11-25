@@ -1,0 +1,23 @@
+language: ruby
+
+env:
+  - CI=true
+
+before_script:
+- cp config/database.travis.yml config/database.yml
+- mysql -e 'create database travis_test '
+
+script:
+- RAILS_ENV=test bundle exec rake db:create db:migrate --trace
+- bundle exec rspec spec/
+
+bundler_args: --binstubs=./bundler_stubs
+
+cache:
+- bundler
+
+services:
+- mysql
+
+addons:
+  mysql: "14.14"
