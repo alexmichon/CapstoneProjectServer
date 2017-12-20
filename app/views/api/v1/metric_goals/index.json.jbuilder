@@ -1,0 +1,1 @@
+json.array! @metric_goals, partial: 'metric_goal', as: :metric_goal

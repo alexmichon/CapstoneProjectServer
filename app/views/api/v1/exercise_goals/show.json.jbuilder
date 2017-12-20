@@ -1,0 +1,1 @@
+json.partial! 'exercise_goal', exercise_goal: @exercise_goal

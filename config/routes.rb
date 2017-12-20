@@ -14,9 +14,17 @@ Rails.application.routes.draw do
     namespace :v1 do
     	mount_devise_token_auth_for 'User', at: 'auth'
     	resources :users
+      resources :exercise_types
       resources :exercises do
+        resource :exercise_goal do
+          resources :metric_goals
+        end
+        resource :exercise_result, only: [:show] do
+          resources :metric_results
+        end
   		  resources :measurements
     	end
+      resources :metrics
     end
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

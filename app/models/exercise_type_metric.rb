@@ -1,0 +1,2 @@
+class ExerciseTypeMetric < ApplicationRecord
+end

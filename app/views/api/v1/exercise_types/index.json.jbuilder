@@ -1,0 +1,1 @@
+json.array! @exercise_types, partial: 'exercise_type', as: :exercise_type

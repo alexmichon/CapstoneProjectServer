@@ -10,12 +10,44 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171120073405) do
+ActiveRecord::Schema.define(version: 20171220174340) do
+
+  create_table "exercise_goals", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "exercise_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["exercise_id"], name: "index_exercise_goals_on_exercise_id"
+  end
+
+  create_table "exercise_results", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "exercise_goal_id"
+    t.bigint "exercise_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["exercise_goal_id"], name: "index_exercise_results_on_exercise_goal_id"
+    t.index ["exercise_id"], name: "index_exercise_results_on_exercise_id"
+  end
+
+  create_table "exercise_types", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "name"
+    t.string "description"
+    t.string "video_url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "exercise_types_metrics", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "exercise_type_id", null: false
+    t.bigint "metric_id", null: false
+    t.index ["exercise_type_id", "metric_id"], name: "index_exercise_types_metrics_on_exercise_type_id_and_metric_id"
+  end
 
   create_table "exercises", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "exercise_type_id", null: false
+    t.index ["exercise_type_id"], name: "index_exercises_on_exercise_type_id"
   end
 
   create_table "measurements", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -27,6 +59,27 @@ ActiveRecord::Schema.define(version: 20171120073405) do
     t.bigint "exercise_id", null: false
     t.index ["exercise_id"], name: "index_measurements_on_exercise_id"
     t.index ["metric_id"], name: "index_measurements_on_metric_id"
+  end
+
+  create_table "metric_goals", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "exercise_goal_id"
+    t.bigint "metric_id"
+    t.float "goal", limit: 24
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["exercise_goal_id"], name: "index_metric_goals_on_exercise_goal_id"
+    t.index ["metric_id"], name: "index_metric_goals_on_metric_id"
+  end
+
+  create_table "metric_results", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "exercise_result_id"
+    t.bigint "metric_goal_id"
+    t.float "actual", limit: 24
+    t.boolean "result"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["exercise_result_id"], name: "index_metric_results_on_exercise_result_id"
+    t.index ["metric_goal_id"], name: "index_metric_results_on_metric_goal_id"
   end
 
   create_table "metrics", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -64,6 +117,8 @@ ActiveRecord::Schema.define(version: 20171120073405) do
     t.text "tokens"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "first_name", null: false
+    t.string "last_name", null: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
