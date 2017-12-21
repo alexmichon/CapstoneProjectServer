@@ -1,19 +1,13 @@
 class Api::V1::MetricsController < Api::V1::ApiController
 
-	before_action :find_exercise
+	before_action :find_exercise_type
 
 	def index
-		@metrics = @exercise.metrics.all
+		@metrics = @exercise_type.metrics.all
 	end
 
 	def show
-		@metric = @exercise.metrics.find(params[:id])
-	end
-
-	def create
-		@metric = @exercise.metrics.build metrics_params
-		@metric.save!
-		render :show
+		@metric = @exercise_type.metrics.find(params[:id])
 	end
 
 	private
@@ -22,7 +16,7 @@ class Api::V1::MetricsController < Api::V1::ApiController
 		params.require(:metric).permit(:name, :sensor, :sensor_id)
 	end
 
-	def find_exercise
-		@exercise = Exercise.find(params[:exercise_id])
+	def find_exercise_type
+		@exercise_type = ExerciseType.find(params[:exercise_type_id])
 	end
 end
