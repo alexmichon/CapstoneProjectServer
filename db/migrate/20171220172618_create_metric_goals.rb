@@ -5,6 +5,9 @@ class CreateMetricGoals < ActiveRecord::Migration[5.1]
       t.belongs_to :metric
       t.float :goal
 
+      t.string :aggregator
+      t.string :comparator
+
       t.timestamps
     end
   end

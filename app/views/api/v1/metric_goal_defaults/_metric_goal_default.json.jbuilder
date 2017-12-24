@@ -1,0 +1,7 @@
+json.id metric_goal_default.id
+json.metric_id metric_goal_default.metric_id
+json.metric_name metric_goal_default.metric.name
+json.exercise_goal_default_id metric_goal_default.exercise_goal_default_id
+json.goal metric_goal_default.goal
+json.aggregator metric_goal_default.aggregator
+json.comparator metric_goal_default.comparator

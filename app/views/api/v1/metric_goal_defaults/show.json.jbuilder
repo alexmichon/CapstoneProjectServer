@@ -1,0 +1,1 @@
+json.partial! 'metric_goal_default', metric_goal_default: @metric_goal_default

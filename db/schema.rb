@@ -10,7 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171220174340) do
+ActiveRecord::Schema.define(version: 20171224170556) do
+
+  create_table "exercise_goal_defaults", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "exercise_type_id", null: false
+    t.index ["exercise_type_id"], name: "index_exercise_goal_defaults_on_exercise_type_id"
+  end
 
   create_table "exercise_goals", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "exercise_id"
@@ -47,7 +52,9 @@ ActiveRecord::Schema.define(version: 20171220174340) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "exercise_type_id", null: false
+    t.bigint "user_id", null: false
     t.index ["exercise_type_id"], name: "index_exercises_on_exercise_type_id"
+    t.index ["user_id"], name: "index_exercises_on_user_id"
   end
 
   create_table "measurements", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -61,10 +68,22 @@ ActiveRecord::Schema.define(version: 20171220174340) do
     t.index ["metric_id"], name: "index_measurements_on_metric_id"
   end
 
+  create_table "metric_goal_defaults", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "exercise_goal_default_id"
+    t.bigint "metric_id"
+    t.float "goal", limit: 24
+    t.string "aggregator"
+    t.string "comparator"
+    t.index ["exercise_goal_default_id"], name: "index_metric_goal_defaults_on_exercise_goal_default_id"
+    t.index ["metric_id"], name: "index_metric_goal_defaults_on_metric_id"
+  end
+
   create_table "metric_goals", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "exercise_goal_id"
     t.bigint "metric_id"
     t.float "goal", limit: 24
+    t.string "aggregator"
+    t.string "comparator"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["exercise_goal_id"], name: "index_metric_goals_on_exercise_goal_id"
@@ -87,6 +106,9 @@ ActiveRecord::Schema.define(version: 20171220174340) do
     t.datetime "updated_at", null: false
     t.string "name", null: false
     t.bigint "sensor_id", null: false
+    t.float "min", limit: 24
+    t.float "max", limit: 24
+    t.string "unit"
     t.index ["sensor_id"], name: "index_metrics_on_sensor_id"
   end
 

@@ -1,0 +1,1 @@
+json.partial! 'exercise_goal_default', exercise_goal_default: @exercise_goal_default

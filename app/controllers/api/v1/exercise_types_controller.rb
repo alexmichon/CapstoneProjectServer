@@ -1,6 +1,7 @@
 module Api
 	module V1
 		class ExerciseTypesController < ApiController
+			before_action :authenticate_user!, only: :default_goal
 
 			def index
 				@exercise_types = ExerciseType.all
@@ -17,6 +18,11 @@ module Api
 				else
 					render_error
 				end
+			end
+
+			def default_goal
+				@exercise_type = ExerciseType.find(params[:id])
+				@exercise_goal = current_user.default_goal @exercise_type
 			end
 
 			private

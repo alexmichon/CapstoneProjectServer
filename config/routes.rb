@@ -16,6 +16,9 @@ Rails.application.routes.draw do
     	resources :users
       resources :exercise_types do
         resources :metrics
+        member do
+          get :default_goal
+        end
       end
       resources :exercises do
         resource :exercise_goal do
