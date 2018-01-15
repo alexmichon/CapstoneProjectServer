@@ -9,7 +9,7 @@ class Api::V1::ExercisesController < Api::V1::ApiController
 	end
 
 	def create
-		@exercise = Exercise.new exercise_params
+		@exercise = ExerciseManager.new_exercise(current_user, exercise_params)
 		@exercise.save!
 		render :show
 	end
@@ -17,7 +17,7 @@ class Api::V1::ExercisesController < Api::V1::ApiController
 	private
 
 	def exercise_params
-		params.require(:exercise).permit(:name)
+		params.require(:exercise).permit(:name, :exercise_type_id)
 	end
 
 end

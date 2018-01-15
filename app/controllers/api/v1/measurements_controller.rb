@@ -15,10 +15,26 @@ class Api::V1::MeasurementsController < Api::V1::ApiController
 		render :show
 	end
 
+	def save
+		puts @exercise.id
+		params[:measurements].each do |meas|
+			puts meas
+			begin
+				@exercise.measurements.create!(meas)
+			rescue ActiveModel::ForbiddenAttributesError
+			end
+		end
+		render :index
+	end
+
 	private
 
 	def measurement_params
 		params.require(:measurement).permit(:took_at, :value, :metric_id)
+	end
+
+	def measurements_params
+		params.require(:measurements)
 	end
 
 	def find_exercise

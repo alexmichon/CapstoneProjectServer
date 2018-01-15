@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
 
-
   root to: 'users#index'
   resources :users
   resources :exercises do
@@ -27,7 +26,11 @@ Rails.application.routes.draw do
         resource :exercise_result, only: [:show] do
           resources :metric_results
         end
-  		  resources :measurements
+  		  resources :measurements do
+          collection do
+            post :save
+          end
+        end
     	end
     end
   end

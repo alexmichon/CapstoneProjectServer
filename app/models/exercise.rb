@@ -25,7 +25,21 @@ class Exercise < ApplicationRecord
 
 	belongs_to :user
 
+	before_create :set_default_name
+
+
+
 	def metrics
 		Metric.where(:id => measurements.pluck(:metric_id).uniq)
+	end
+
+	def default_name
+		"#{self.exercise_type.name} - #{DateTime.now.strftime('%Y-%m-%d %H:%M:%S')}" 
+	end
+
+	private
+
+	def set_default_name
+		self.name ||= default_name
 	end
 end
