@@ -5,6 +5,7 @@ module Api
 
 			def show
 				@exercise_goal = @exercise.exercise_goal
+				@exercise_goal = ExerciseManager.create_exercise_goal current_user, @exercise if @exercise_goal.nil?
 				render_error_msg("No exercise goal defined", 404) unless @exercise_goal
 			end
 

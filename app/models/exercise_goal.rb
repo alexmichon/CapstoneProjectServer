@@ -15,4 +15,12 @@
 class ExerciseGoal < ApplicationRecord
 	belongs_to :exercise
 	has_many :metric_goals
+
+	def self.create_from_default_goal(default_goal, exercise)
+		exercise_goal = ExerciseGoal.create(:exercise_id => exercise.id)
+		default_goal.metric_default_goals.each do |metric_default_goal|
+			MetricGoal.create_from_default_goal metric_default_goal, exercise_goal, goal
+		end
+		exercise_goal
+	end
 end

@@ -14,6 +14,12 @@ class Api::V1::ExercisesController < Api::V1::ApiController
 		render :show
 	end
 
+	def stop
+		@exercise = Exercise.find(params[:id])
+		@exercise.done = true
+		render :show
+	end
+
 	private
 
 	def exercise_params

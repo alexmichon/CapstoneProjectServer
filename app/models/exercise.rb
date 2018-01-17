@@ -8,6 +8,7 @@
 #  updated_at       :datetime         not null
 #  exercise_type_id :integer          not null
 #  user_id          :integer          not null
+#  done             :boolean          default(FALSE)
 #
 # Indexes
 #

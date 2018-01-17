@@ -20,6 +20,9 @@ Rails.application.routes.draw do
         end
       end
       resources :exercises do
+        member do
+          post :stop
+        end
         resource :exercise_goal do
           resources :metric_goals
         end
