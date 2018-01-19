@@ -16,8 +16,8 @@
 #
 
 class MetricGoalDefault < ApplicationRecord
-	include GoalAggregator
-	include GoalComparator
+	include MeasurementAggregator
+	include MeasurementComparator
 
 	belongs_to :exercise_goal_default
 	belongs_to :metric

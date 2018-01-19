@@ -10,4 +10,5 @@ class MeasurementManager
 			GoalAggregator.max(measurements)
 		end
 	end
+
 end

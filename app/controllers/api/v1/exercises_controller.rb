@@ -1,22 +1,23 @@
 class Api::V1::ExercisesController < Api::V1::ApiController
 
 	def index
-		@exercises = Exercise.all
+		@exercises = current_user.exercises.includes(:exercise_type).finished
 	end
 
 	def show
-		@exercise = Exercise.find(params[:id])
+		@exercise = current_user.exercises.find(params[:id])
 	end
 
 	def create
 		@exercise = ExerciseManager.new_exercise(current_user, exercise_params)
-		@exercise.save!
 		render :show
 	end
 
 	def stop
-		@exercise = Exercise.find(params[:id])
+		@exercise = current_user.exercises.find(params[:id])
 		@exercise.done = true
+		ExerciseManager.create_exercise_result(@exercise)
+		@exercise.save!
 		render :show
 	end
 

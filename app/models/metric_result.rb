@@ -20,4 +20,11 @@ class MetricResult < ApplicationRecord
 	belongs_to :metric_goal
 	belongs_to :exercise_result
 	
+	def metric
+		self.metric_goal.metric
+	end
+
+	def expected
+		self.metric_goal.goal
+	end
 end

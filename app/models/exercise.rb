@@ -19,8 +19,8 @@
 class Exercise < ApplicationRecord
 	has_many :measurements, dependent: :destroy
 
-	has_one :exercise_goal
-	has_one :exercise_result
+	has_one :exercise_goal, dependent: :destroy
+	has_one :exercise_result, dependent: :destroy
 
 	belongs_to :exercise_type
 
@@ -29,18 +29,22 @@ class Exercise < ApplicationRecord
 	before_create :set_default_name
 
 
+	default_scope { order(created_at: :desc) }
+
+	scope :finished, -> { where(done: true) }
 
 	def metrics
 		Metric.where(:id => measurements.pluck(:metric_id).uniq)
 	end
 
-	def default_name
-		"#{self.exercise_type.name} - #{DateTime.now.strftime('%Y-%m-%d %H:%M:%S')}" 
-	end
 
 	private
 
 	def set_default_name
 		self.name ||= default_name
+	end
+
+	def default_name
+		self.exercise_type.name
 	end
 end
