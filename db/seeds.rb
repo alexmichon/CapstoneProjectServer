@@ -18,9 +18,9 @@ Metric.create(:name => "Gyr X", :sensor => gyro, :min => -1000, :max => 1000, :u
 Metric.create(:name => "Gyr Y", :sensor => gyro, :min => -1000, :max => 1000, :unit => "rad/s")
 Metric.create(:name => "Gyr Z", :sensor => gyro, :min => -1000, :max => 1000, :unit => "rad/s")
 
-angle_metric = Metric.create(:name => "Angle", :sensor => encoder, :min => 0, :max => 360, :unit => "rad")
+angle_metric = Metric.create(:name => "Elbow Angle", :sensor => encoder, :min => 0, :max => 180, :unit => "°")
 
-exercise_type = ExerciseType.create(:name => "Test Exercise Type", :description => "This is a test exercise type", :video_url => "vZuFq4CfRR8")
+exercise_type = ExerciseType.create(:name => "Elbow Extension", :description => "Extend your elbow as much as possible", :video_url => "Iu1qa8N2ID0", :duration => 10)
 exercise_type.metrics << angle_metric
 
 exercise_goal_default = ExerciseGoalDefault.create(:exercise_type => exercise_type)

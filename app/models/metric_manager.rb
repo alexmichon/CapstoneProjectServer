@@ -6,7 +6,7 @@ class MetricManager
 			:metric_id => metric_goal_default.metric_id,
 			:aggregator => metric_goal_default.aggregator,
 			:comparator => metric_goal_default.comparator,
-			:goal => goal
+			:goal => goal || metric_goal_default.goal
 		)
 	end
 

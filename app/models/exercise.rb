@@ -9,6 +9,7 @@
 #  exercise_type_id :integer          not null
 #  user_id          :integer          not null
 #  done             :boolean          default(FALSE)
+#  duration         :integer          not null
 #
 # Indexes
 #
@@ -27,6 +28,7 @@ class Exercise < ApplicationRecord
 	belongs_to :user
 
 	before_create :set_default_name
+	before_create :set_default_duration
 
 
 	default_scope { order(created_at: :desc) }
@@ -46,5 +48,9 @@ class Exercise < ApplicationRecord
 
 	def default_name
 		self.exercise_type.name
+	end
+
+	def set_default_duration
+		self.duration  ||= self.exercise_type.duration
 	end
 end

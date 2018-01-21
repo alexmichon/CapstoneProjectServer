@@ -9,6 +9,7 @@
 #  exercise_type_id :integer          not null
 #  user_id          :integer          not null
 #  done             :boolean          default(FALSE)
+#  duration         :integer          not null
 #
 # Indexes
 #

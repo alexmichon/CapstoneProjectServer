@@ -4,5 +4,6 @@ json.metric_name metric_goal.metric.name
 json.metric_min metric_goal.metric.min
 json.metric_max metric_goal.metric.max
 json.goal metric_goal.goal
+json.unit metric_goal.metric.unit
 json.aggregator metric_goal.aggregator
 json.comparator metric_goal.comparator
