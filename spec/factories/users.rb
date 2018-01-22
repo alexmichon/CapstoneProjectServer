@@ -35,6 +35,11 @@
 
 FactoryBot.define do
 	factory :user do
-		email "toto@toto.com"
+		sequence :email do |n|
+			"test#{n}@test.com"
+		end
+		password "password"
+		first_name "First"
+		last_name "Last"
 	end
 end

@@ -1,4 +1,5 @@
 class Api::V1::MeasurementsController < Api::V1::ApiController
+	before_action :authenticate_user!
 	before_action :find_exercise
 
 	def index
@@ -38,7 +39,7 @@ class Api::V1::MeasurementsController < Api::V1::ApiController
 	end
 
 	def find_exercise
-		@exercise = Exercise.find(params[:exercise_id])
+		@exercise = current_user.exercises.find(params[:exercise_id])
 	end
 
 end

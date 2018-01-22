@@ -1,7 +1,8 @@
 class Api::V1::ExercisesController < Api::V1::ApiController
+	before_action :authenticate_user!
 
 	def index
-		@exercises = current_user.exercises.includes(:exercise_type).finished
+		@exercises = current_user.exercises.includes(:exercise_type)
 	end
 
 	def show

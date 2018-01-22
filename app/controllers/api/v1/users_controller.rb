@@ -12,9 +12,6 @@ module Api
 				@user = User.find(params[:id])
 			end
 
-			def create
-			end
-
 		end
 	end
 end

@@ -19,5 +19,7 @@
 
 FactoryBot.define do
 	factory :exercise do
+		exercise_type
+		user
 	end
 end
