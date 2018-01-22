@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180121012842) do
+ActiveRecord::Schema.define(version: 20180122050542) do
 
   create_table "exercise_goal_defaults", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "exercise_type_id", null: false
@@ -137,7 +137,6 @@ ActiveRecord::Schema.define(version: 20180121012842) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
-    t.string "username", default: "", null: false
     t.string "email", default: "", null: false
     t.text "tokens"
     t.datetime "created_at", null: false

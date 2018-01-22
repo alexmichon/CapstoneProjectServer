@@ -18,7 +18,6 @@
 #  confirmed_at           :datetime
 #  confirmation_sent_at   :datetime
 #  unconfirmed_email      :string(255)
-#  username               :string(255)      default(""), not null
 #  email                  :string(255)      default(""), not null
 #  tokens                 :text(65535)
 #  created_at             :datetime         not null
