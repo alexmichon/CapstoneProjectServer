@@ -44,4 +44,7 @@ class User < ApplicationRecord
 
   has_many :exercises
 
+  validates :email, :password, :first_name, :last_name, presence: true
+  validates :email, uniqueness: true
+
 end

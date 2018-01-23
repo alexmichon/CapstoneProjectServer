@@ -20,4 +20,7 @@ class ExerciseResult < ApplicationRecord
 
 	has_many :metric_results
 	has_many :metric_goals, through: :metric_results
+
+	validates :exercise, presence: true
+
 end

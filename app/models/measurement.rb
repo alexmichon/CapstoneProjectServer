@@ -21,4 +21,6 @@ class Measurement < ApplicationRecord
 	belongs_to :exercise
 
 	default_scope { order(took_at: :asc) }
+
+	validates :took_at, :value, :metric, :exercise, presence: true
 end

@@ -1,12 +1,12 @@
 module ControllerSpecHelpers
 	
 	def authorize
-		controller.stub(:authenticate_user! => true)
+		allow(controller).to receive(:authenticate_user!).and_return(true)
 	end
 
 	def authenticate(user)
 		authorize
-		controller.stub(:current_user => user)
+		allow(controller).to receive(:current_user).and_return(user)
 	end
 
 end

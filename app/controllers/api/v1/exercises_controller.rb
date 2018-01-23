@@ -10,7 +10,7 @@ class Api::V1::ExercisesController < Api::V1::ApiController
 	end
 
 	def create
-		@exercise = ExerciseManager.new_exercise(current_user, exercise_params)
+		@exercise = ExerciseManager.create_exercise(current_user, exercise_params.to_h)
 		render :show
 	end
 

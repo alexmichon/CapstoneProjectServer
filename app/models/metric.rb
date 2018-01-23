@@ -26,6 +26,9 @@ class Metric < ApplicationRecord
 
 	default_scope { order(name: :asc) }
 
+	validates :name, :sensor, presence: true
+	validates :name, uniqueness: true
+
 	def default_goal
 		return self.min
 	end

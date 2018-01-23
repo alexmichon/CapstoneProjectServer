@@ -19,6 +19,9 @@
 class MetricResult < ApplicationRecord
 	belongs_to :metric_goal
 	belongs_to :exercise_result
+
+	validates :metric_goal, :exercise_result, presence: true
+	validates :metric_goal_id, uniqueness: true
 	
 	def metric
 		self.metric_goal.metric

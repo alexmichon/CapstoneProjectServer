@@ -16,4 +16,7 @@ class ExerciseType < ApplicationRecord
 	has_and_belongs_to_many :metrics
 
 	has_one :exercise_goal_default
+
+	validates :name, :description, presence: true
+	validates :name, uniqueness: true
 end

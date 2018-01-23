@@ -65,6 +65,8 @@ end
 group :test do
   gem 'database_cleaner'
   gem 'factory_bot_rails', '~> 4.0'
+  gem 'shoulda-matchers', '~> 3.1'
+  gem 'rails-controller-testing'
   gem 'codecov', require: false
 end
 

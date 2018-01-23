@@ -21,5 +21,11 @@ FactoryBot.define do
 	factory :exercise do
 		exercise_type
 		user
+		
+		sequence :name do |n|
+			"Exercise #{n}"
+		end
+
+		duration 10
 	end
 end

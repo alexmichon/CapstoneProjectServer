@@ -24,13 +24,6 @@ class MetricGoal < ApplicationRecord
 	belongs_to :exercise_goal
 	belongs_to :metric
 
-	def self.create_from_default_goal(metric_default_goal, exercise_goal, goal)
-		Metric.create(
-			:exercise_goal_id => exercise_goal.id,
-			:metric_id => metric_default_goal.metric_id,
-			:aggregator => metric_default_goal.aggregator,
-			:comparator => metric_default_goal.comparator,
-			:goal => goal,
-		)
-	end
+	validates :exercise_goal, :metric, :goal, :aggregator, :comparator, presence: true
+
 end

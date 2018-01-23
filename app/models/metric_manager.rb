@@ -11,7 +11,7 @@ class MetricManager
 	end
 
 	def self.last_value(user, metric, aggregator)
-		exercise = user.exercises.where(:done => true).last
+		exercise = user.exercises.where(:done => true).order(created_at: :desc).limit(1).last
 		return nil if exercise.nil?
 
 		measurements = exercise.measurements.where(:metric_id => metric.id)

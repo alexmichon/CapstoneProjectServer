@@ -19,5 +19,10 @@
 require 'rails_helper'
 
 RSpec.describe MetricResult, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  
+	it { should validate_presence_of(:exercise_result) }
+	it { should validate_presence_of(:metric_goal) }
+
+	it { should validate_uniqueness_of(:metric_goal_id) }
+
 end

@@ -20,5 +20,11 @@
 require 'rails_helper'
 
 RSpec.describe MetricGoal, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  
+	it { should validate_presence_of(:exercise_goal) }
+	it { should validate_presence_of(:metric) }
+	it { should validate_presence_of(:goal) }
+	it { should validate_presence_of(:aggregator) }
+	it { should validate_presence_of(:comparator) }
+
 end

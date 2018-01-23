@@ -27,13 +27,18 @@ class Exercise < ApplicationRecord
 
 	belongs_to :user
 
-	before_create :set_default_name
-	before_create :set_default_duration
-
-
 	default_scope { order(created_at: :desc) }
 
 	scope :finished, -> { where(done: true) }
+
+
+
+	after_initialize :set_default_name
+	after_initialize :set_default_duration
+
+	validates :name, :duration, :user, :exercise_type, presence: true
+
+
 
 	def metrics
 		Metric.where(:id => measurements.pluck(:metric_id).uniq)
@@ -47,10 +52,15 @@ class Exercise < ApplicationRecord
 	end
 
 	def default_name
-		self.exercise_type.name
+		self.exercise_type.name if self.exercise_type
 	end
 
 	def set_default_duration
-		self.duration  ||= self.exercise_type.duration
+		self.duration  ||= default_duration
 	end
+
+	def default_duration
+		self.exercise_type.duration if self.exercise_type
+	end
+	
 end

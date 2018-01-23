@@ -20,11 +20,6 @@ module Api
 				end
 			end
 
-			def default_goal
-				@exercise_type = ExerciseType.find(params[:id])
-				@exercise_goal = ExerciseManager.default_goal current_user, @exercise_type
-			end
-
 			private
 
 			def exercise_type_params
